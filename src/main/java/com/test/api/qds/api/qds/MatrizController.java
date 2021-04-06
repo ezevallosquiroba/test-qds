@@ -15,13 +15,17 @@ public class MatrizController {
 		int[][] matrix = request.getMatrix();
 
 		int N = matrix[0].length;
-
-		rotateMatrix90deg(N, matrix);
+		
+		try {
+			rotateMatrix90deg(N, matrix);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return "Ingrese correctamente los valores en formato N x N";
+		}
 
 		return printMatrix(N, matrix);
 	}
 
-	private void rotateMatrix90deg(int N, int matrix[][]) {
+	private void rotateMatrix90deg(int N, int matrix[][]) throws ArrayIndexOutOfBoundsException {
 		for (int x = 0; x < N / 2; x++) {
 			for (int y = x; y < N - x - 1; y++) {
 				int temp = matrix[x][y];
